@@ -17,17 +17,17 @@
 
 ## itemsテーブル
 
-|Column               |Type        | Options    |
-|---------------------|------------|------------|
-| item_name           | string     | null:false |
-| item_description    | text       | null:false |
-| category            | integer    | null:false |
-| item_status         | integer    | null:false |
-| price               | integer    | null:false |
-| shipping_fee_burden | integer    | null:false |
-| shipping_area       | integer    | null:false |
-| shipping_days       | integer    | null:false |
-| user                | references | null:false |
+|Column                  |Type        | Options    |
+|------------------------|------------|------------|
+| item_name              | string     | null:false |
+| item_description       | text       | null:false |
+| category_id            | integer    | null:false |
+| item_status_id         | integer    | null:false |
+| price                  | integer    | null:false |
+| shipping_fee_burden_id | integer    | null:false |
+| shipping_area_id       | integer    | null:false |
+| shipping_days_id       | integer    | null:false |
+| user                   | references | null:false |
 
 ### Association
 - has_one : purchase_record
@@ -52,8 +52,8 @@
 | phone_number    | string     | null:false  |
 | region          | string     | null:false  |
 | city            | string     | null:false  |
-| street          | integer    | null:false  |
-| building        | string     | null:false  |
+| street          | string     | null:false  |
+| building        | string     |             |
 | postal_code     | string     | null:false  |
 | purchase_record | references | null:false  |
 
