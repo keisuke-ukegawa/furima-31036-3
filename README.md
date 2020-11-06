@@ -50,7 +50,7 @@
 |Column           |Type        | Options     |
 |-----------------|------------|-------------|
 | phone_number    | string     | null:false  |
-| region          | string     | null:false  |
+| shipping_area_id| integer    | null:false  |
 | city            | string     | null:false  |
 | street          | string     | null:false  |
 | building        | string     |             |
