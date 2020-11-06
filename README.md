@@ -1,31 +1,33 @@
 ## usersテーブル
 
-|Column      |Type     | Options                 |
-|------------|---------|-------------------------|
-| nickname   | string  | null:false              |
-| password   | string  | null:false              |
-| email      | string  | null:false,unique: true |
-| first_name | string  | null:false              |
-| last_name  | string  | null:false              |
-| birthday   | integer | null:false              |
+|Column           |Type    | Options                 |
+|-----------------|--------|-------------------------|
+| nickname        | string | null:false              |
+| password        | string | null:false              |
+| email           | string | null:false,unique: true |
+| first_name      | string | null:false              |
+| last_name       | string | null:false              |
+| first_name_kana | string | null:false              |
+| last_name_kana  | string | null:false              |
+| birthday        | date   | null:false              |
 
 ### Association
-- has_many : purchase_record
-- has_many : item
-- belongs_to :
+- has_many : purchase_records
+- has_many : items
 
 ## itemsテーブル
 
-|Column               |Type     | Options    |
-|---------------------|---------|------------|
-| item_name           | string  | null:false |
-| item_description    | string  | null:false |
-| category            | string  | null:false |
-| item_status         | string  | null:false |
-| price               | integer | null:false |
-| shipping_fee_burden | integer | null:false |
-| shipping_area       | string  | null:false |
-| shipping_days       | integer | null:false |
+|Column               |Type        | Options    |
+|---------------------|------------|------------|
+| item_name           | string     | null:false |
+| item_description    | text       | null:false |
+| category            | integer    | null:false |
+| item_status         | integer    | null:false |
+| price               | integer    | null:false |
+| shipping_fee_burden | integer    | null:false |
+| shipping_area       | integer    | null:false |
+| shipping_days       | integer    | null:false |
+| user                | references | null:false |
 
 ### Association
 - has_one : purchase_record
@@ -35,7 +37,6 @@
 
 |Column           |Type        | Options    |
 |-----------------|------------|------------|
-| purchase_date   | integer    | null:false |
 | user            | references | null:false |
 | item            | references | null:false |
 
@@ -46,13 +47,15 @@
 
 ## addressテーブル
 
-|Column        |Type     | Options    |
-|--------------|---------|------------|
-| phone_number | integer | null:false |
-| region       | string  | null:false |
-| city         | string  | null:false |
-| street       | integer | null:false |
-| postal_code  | integer | null:false |
+|Column           |Type        | Options     |
+|-----------------|------------|-------------|
+| phone_number    | string     | null:false  |
+| region          | string     | null:false  |
+| city            | string     | null:false  |
+| street          | integer    | null:false  |
+| building        | string     | null:false  |
+| postal_code     | string     | null:false  |
+| purchase_record | references | null:false  |
 
 ### Association
 - belongs_to : purchase_record
