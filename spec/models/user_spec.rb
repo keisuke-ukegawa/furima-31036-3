@@ -93,8 +93,13 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("First name kana 全角カタカナを使用してください")
     end
     it "メールアドレスは@を含む必要がある" do
-      @user.email = "aaa@aaa"
+      @user.email = "aaa@gmail.com"
       expect(@user).to be_valid
+    end
+    it "メールアドレスに@を含まない場合は登録できない" do
+      @user.email = "aaagmail.com"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
   end
 end
