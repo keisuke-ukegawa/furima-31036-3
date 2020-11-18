@@ -65,5 +65,30 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
+    it 'category_idが0を選択したら投稿できない' do
+      @item.category_id = '0'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 0")
+    end
+    it 'item_status_idが0を選択したら投稿できない' do
+      @item.item_status_id = '0'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Item status must be other than 0")
+    end
+    it 'shipping_fee_burden_idが0を選択したら投稿できない' do
+      @item.shipping_fee_burden_id = '0'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping fee burden must be other than 0")
+    end
+    it 'shipping_area_idが0を選択したら投稿できない' do
+      @item.shipping_area_id = '0'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping area must be other than 0")
+    end
+    it 'shipping_days_idが0を選択したら投稿できない' do
+      @item.shipping_days_id = '0'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping days must be other than 0")
+    end
   end
 end

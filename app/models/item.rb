@@ -2,12 +2,12 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :item_name
     validates :item_description
-    validates :category_id, numericality: { other_than: 1 }
-    validates :item_status_id
+    validates :category_id, numericality: { other_than: 0 }
+    validates :item_status_id, numericality: { other_than: 0 }
     validates :price, format: { with: /[0-9]/ }, inclusion: { in: 300..9_999_999 }
-    validates :shipping_fee_burden_id
-    validates :shipping_area_id
-    validates :shipping_days_id
+    validates :shipping_fee_burden_id, numericality: { other_than: 0 }
+    validates :shipping_area_id, numericality: { other_than: 0 }
+    validates :shipping_days_id, numericality: { other_than: 0 }
     validates :image
   end
 
