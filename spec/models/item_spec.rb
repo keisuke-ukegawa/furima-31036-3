@@ -90,5 +90,8 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping days must be other than 0")
     end
+    it '全て正常' do
+      expect(@item.valid?).to eq true
+    end
   end
 end
