@@ -1,6 +1,6 @@
 class PurchaseRecordAddress
   include ActiveModel::Model
-  attr_accessor :street, :shipping_area_id, :city, :postal_code, :building, :phone_number, :purchase_record, :token
+  attr_accessor :street, :user_id, :item_id, :shipping_area_id, :city, :postal_code, :building, :phone_number, :purchase_record, :token
   
   with_options presence: true do
     validates :token

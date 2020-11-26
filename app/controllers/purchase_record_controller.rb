@@ -1,14 +1,16 @@
 class PurchaseRecordController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: :index
+  before_action :sold_out, only: :index
   before_action :set_item, only: [:index,:create]
   
   def index
     #binding.pry
     @purchase_record_address = PurchaseRecordAddress.new
+    redirect_to root_path unless current_user.id != @item.user_id
   end
 
   def create
-    #binding.pry
+    binding.pry
     @purchase_record_address = PurchaseRecordAddress.new(purchase_record_address_params)
     if @purchase_record_address.valid?
       pay_item
@@ -33,8 +35,15 @@ class PurchaseRecordController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
       amount: @item.price,
-      card: purchase_address_params[:token],
+      card: purchase_record_address_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def sold_out
+    item = Item.find(params[:item_id])
+    if item.purchase_record.present?
+      redirect_to root_path
+    end
   end
 end
