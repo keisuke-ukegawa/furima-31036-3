@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :purchase_record_address do
+    token {"tok_abcdefghijk00000000000000000"}
     postal_code { '123-4567' }
     shipping_area_id { '香川県高松市' }
     city { '1−2' }

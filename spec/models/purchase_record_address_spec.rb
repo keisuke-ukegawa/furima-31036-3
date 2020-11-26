@@ -13,9 +13,17 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         @purchase_record_address.building = nil
         expect(@purchase_record_address.valid?).to eq false
       end
+      it "tokenがあれば保存ができること" do
+        expect(@purchase_record_address.valid?).to eq false
+      end
     end
 
     context '商品購入失敗' do
+      it "tokenが空では登録できないこと" do
+        @purchase_record_address.token = nil
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include("Token can't be blank")
+      end
       it "郵便番号が空では登録できない" do
         @purchase_record_address.postal_code = nil
         @purchase_record_address.valid?
