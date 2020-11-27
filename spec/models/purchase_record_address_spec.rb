@@ -25,7 +25,7 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         expect(@purchase_record_address.errors.full_messages).to include("Postal code can't be blank")
       end
       it "郵便番号にハイフンが含まれていばければ保存されない" do
-        @purchase_record_address.postal_code = 4567893
+        @purchase_record_address.postal_code = '4567893'
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Postal code is invalid")
       end
@@ -40,7 +40,7 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         expect(@purchase_record_address.errors.full_messages).to include("Phone number is invalid")
       end
       it "電話番号が11桁を超えると登録できない" do
-        @purchase_record_address.phone_number = 767689765432
+        @purchase_record_address.phone_number = '767689765432'
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Phone number is invalid")
       end

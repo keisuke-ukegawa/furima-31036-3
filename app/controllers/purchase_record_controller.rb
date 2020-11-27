@@ -1,7 +1,7 @@
 class PurchaseRecordController < ApplicationController
   before_action :authenticate_user!, only: :index
-  before_action :sold_out, only: :index
   before_action :set_item, only: [:index,:create]
+  before_action :sold_out, only: :index
   
   def index
     @purchase_record_address = PurchaseRecordAddress.new
@@ -39,8 +39,7 @@ class PurchaseRecordController < ApplicationController
   end
 
   def sold_out
-    item = Item.find(params[:item_id])
-    if item.purchase_record.present?
+    if @item.purchase_record.present?
       redirect_to root_path
     end
   end
