@@ -39,6 +39,7 @@ class PurchaseRecordController < ApplicationController
   end
 
   def sold_out
+    item = Item.find(params[:item_id])
     if item.purchase_record.present?
       redirect_to root_path
     end
