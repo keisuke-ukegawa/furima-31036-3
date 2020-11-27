@@ -13,9 +13,6 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         @purchase_record_address.building = nil
         expect(@purchase_record_address).to be_valid
       end
-      it "tokenがあれば保存ができること" do
-        expect(@purchase_record_address).to be_valid
-      end
 
       it "tokenが空では登録できないこと" do
         @purchase_record_address.token = nil

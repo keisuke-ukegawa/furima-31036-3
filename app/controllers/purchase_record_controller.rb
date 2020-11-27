@@ -4,13 +4,11 @@ class PurchaseRecordController < ApplicationController
   before_action :set_item, only: [:index,:create]
   
   def index
-    #binding.pry
     @purchase_record_address = PurchaseRecordAddress.new
     redirect_to root_path unless current_user.id != @item.user_id
   end
 
   def create
-    #binding.pry
     @purchase_record_address = PurchaseRecordAddress.new(purchase_record_address_params)
     if @purchase_record_address.valid?
       pay_item
@@ -32,7 +30,6 @@ class PurchaseRecordController < ApplicationController
   end
 
   def pay_item
-    #binding.pry
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
       amount: @item.price,
@@ -42,7 +39,6 @@ class PurchaseRecordController < ApplicationController
   end
 
   def sold_out
-    item = Item.find(params[:item_id])
     if item.purchase_record.present?
       redirect_to root_path
     end
