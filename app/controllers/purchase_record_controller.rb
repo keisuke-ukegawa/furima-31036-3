@@ -10,7 +10,7 @@ class PurchaseRecordController < ApplicationController
   end
 
   def create
-    binding.pry
+    #binding.pry
     @purchase_record_address = PurchaseRecordAddress.new(purchase_record_address_params)
     if @purchase_record_address.valid?
       pay_item
@@ -24,7 +24,7 @@ class PurchaseRecordController < ApplicationController
   private  
 
   def purchase_record_address_params
-    params.require(:purchase_record_address).permit(:street, :shipping_area_id, :city, :postal_code, :building, :phone_number, :purchase_record).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:purchase_record_address).permit(:street, :shipping_area_id, :city, :postal_code, :building, :phone_number, :purchase_record_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
@@ -32,6 +32,7 @@ class PurchaseRecordController < ApplicationController
   end
 
   def pay_item
+    #binding.pry
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
       amount: @item.price,

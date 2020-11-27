@@ -1,24 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseRecordAddress, type: :model do
-  before do
-    @purchase_record_address = FactoryBot.build(:purchase_record_address)
-  end
   describe '商品購入情報' do
-    context '商品購入成功' do
+    before do
+      @purchase_record_address = FactoryBot.build(:purchase_record_address)
+    end
+  
       it "全て正常" do
-        expect(@purchase_record_address.valid?).to eq false
+        expect(@purchase_record_address).to be_valid
       end
       it "建物名が空でも登録できる" do
         @purchase_record_address.building = nil
-        expect(@purchase_record_address.valid?).to eq false
+        expect(@purchase_record_address).to be_valid
       end
       it "tokenがあれば保存ができること" do
-        expect(@purchase_record_address.valid?).to eq false
+        expect(@purchase_record_address).to be_valid
       end
-    end
 
-    context '商品購入失敗' do
       it "tokenが空では登録できないこと" do
         @purchase_record_address.token = nil
         @purchase_record_address.valid?
@@ -64,6 +62,5 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include("Street can't be blank")
       end
-    end
   end
 end
